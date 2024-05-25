@@ -12,7 +12,11 @@ class ImagePickerBottomSheet extends StatelessWidget {
 
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.only(top: mq.height * .03, bottom: mq.height * .05),
+      padding: EdgeInsets.only(
+          top: mq.height * .03,
+          bottom: mq.height * .05,
+          left: mq.width * .05,
+          right: mq.width * .05),
       children: [
         const Text(
           'Pick a Profile Picture',
@@ -22,14 +26,14 @@ class ImagePickerBottomSheet extends StatelessWidget {
         SizedBox(height: mq.height * .02),
         Consumer<UploadProvider>(
           builder: (context, imageProvider, child) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            return Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        shape: const CircleBorder(),
-                        fixedSize: Size(mq.width * .3, mq.height * .15)),
+                        shape: const BeveledRectangleBorder(),
+                        fixedSize: Size(mq.width, mq.height * .10)),
                     onPressed: () async {
                       await imageProvider
                           .pickImage(ImageSource.gallery)
@@ -38,12 +42,21 @@ class ImagePickerBottomSheet extends StatelessWidget {
                         Navigator.pop(context);
                       });
                     },
-                    child: const Icon(Icons.photo_library_outlined)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text('Choose photo'),
+                        Icon(Icons.photo_library_outlined),
+                      ],
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
-                        shape: const CircleBorder(),
-                        fixedSize: Size(mq.width * .3, mq.height * .15)),
+                        shape: const BeveledRectangleBorder(),
+                        fixedSize: Size(mq.width, mq.height * .10)),
                     onPressed: () async {
                       await imageProvider
                           .pickImage(ImageSource.camera)
@@ -52,7 +65,13 @@ class ImagePickerBottomSheet extends StatelessWidget {
                         Navigator.pop(context);
                       });
                     },
-                    child: const Icon(Icons.camera_alt_outlined)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text('Take photo'),
+                        Icon(Icons.camera_alt_outlined),
+                      ],
+                    )),
               ],
             );
           },

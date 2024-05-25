@@ -46,7 +46,7 @@ class HomeProvider extends ChangeNotifier {
         notifyListeners();
       }
     }, (data) {
-      if (data.length != 7) {
+      if (data.length >= 8) {
         isMoreDataLoading = false;
         log('----------$isMoreDataLoading.toString()');
       }

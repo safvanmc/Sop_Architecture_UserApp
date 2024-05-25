@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class OtpScreen extends StatelessWidget {
   final String phoneNumber;
   final String verificationId;
-  const OtpScreen(
+  OtpScreen(
       {super.key, required this.phoneNumber, required this.verificationId});
 
   @override
@@ -69,12 +69,19 @@ class OtpScreen extends StatelessWidget {
                     focusedPinTheme: PinTheme(
                         width: 55,
                         height: 55,
-                        textStyle:
-                            const TextStyle(fontSize: 22, color: Colors.red),
+                        textStyle: const TextStyle(
+                            fontSize: 22,
+                            color: Color.fromARGB(255, 112, 56, 52)),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(color: Colors.black))),
+                    androidSmsAutofillMethod:
+                        AndroidSmsAutofillMethod.smsRetrieverApi,
+                    closeKeyboardWhenCompleted: true,
+                    autofocus: true,
+                    pinAnimationType: PinAnimationType.scale,
+                    animationDuration: Duration(milliseconds: 400),
                   );
                 },
               ),
@@ -144,13 +151,21 @@ class OtpScreen extends StatelessWidget {
                                   'Please enter the otp', Colors.red);
                             }
                           },
-                          child: Text(
-                            'Verify',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),
-                          ));
+                          child: otpProvider.isLoading
+                              ? Text(
+                                  'Verify',
+                                  style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              : SizedBox(
+                                  height: 25,
+                                  width: 25,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.blue.shade300,
+                                  ),
+                                ));
                     },
                   ))
             ],

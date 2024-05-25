@@ -14,16 +14,21 @@ class userCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mq = MediaQuery.sizeOf(context);
     return ListTile(
+      minTileHeight: mq.height / 10,
       leading: data.url == ''
           ? CircleAvatar(
-              radius: 30.r,
+              radius: 25.r,
               backgroundImage: AssetImage(AppImages.personImage),
               backgroundColor: Colors.grey,
             )
           : CircleAvatar(
-              radius: 30.r,
-              backgroundImage: NetworkImage(data.url),
+              radius: 25.r,
+              backgroundImage: Image.network(
+                data.url,
+                scale: 10,
+              ).image,
               backgroundColor: Colors.grey,
             ),
       title: Text(data.name),

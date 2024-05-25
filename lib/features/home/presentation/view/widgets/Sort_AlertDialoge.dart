@@ -39,6 +39,7 @@ class SortingAlert extends StatelessWidget {
                 pro.changeValue(value!);
 
                 pro.getUsers(value);
+                Navigator.pop(context);
               },
             ),
             RadioListTile(
@@ -53,6 +54,7 @@ class SortingAlert extends StatelessWidget {
                 pro.changeValue(value!);
 
                 pro.getUsers(value);
+                Navigator.pop(context);
               },
             ),
             RadioListTile(
@@ -67,6 +69,7 @@ class SortingAlert extends StatelessWidget {
                 pro.changeValue(value!);
 
                 pro.getUsers(value);
+                Navigator.pop(context);
               },
             ),
           ],

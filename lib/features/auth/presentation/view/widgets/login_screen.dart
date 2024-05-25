@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:architecture/features/auth/presentation/provider/auth_provider.dart';
+import 'package:architecture/features/auth/presentation/view/widgets/LoadingAlert.dart';
 import 'package:architecture/general/services/toast_messages.dart';
 import 'package:architecture/general/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -125,21 +129,44 @@ class LoginScreen extends StatelessWidget {
                                 backgroundColor:
                                     WidgetStatePropertyAll(Colors.black)),
                             onPressed: () {
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return LoadingAlertBox();
+                                },
+                              );
                               if (loginProvider
                                   .numberController.text.isNotEmpty) {
+                                // if (!loginProvider.isLoading) {
+                                log(loginProvider.isLoading.toString());
                                 loginProvider.loginWithPhoneNumber(context);
+                                // } else {
+                                //   ToastMessage.showMessage(
+                                //       'Please wait', Colors.red);
+                                // }
                               } else {
                                 ToastMessage.showMessage(
                                     'Please enter the number', Colors.red);
                               }
                             },
-                            child: Text(
+                            child:
+                                //  !loginProvider.isLoading?
+                                Text(
                               'Get OTP',
                               style: GoogleFonts.montserrat(
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),
-                            ));
+                            )
+                            // : SizedBox(
+                            //     height: 25,
+                            //     width: 25,
+                            //     child: CircularProgressIndicator(
+                            //       color: Colors.blue.shade300,
+                            //     ),
+                            //   )
+                            );
                       },
                     ))
               ],

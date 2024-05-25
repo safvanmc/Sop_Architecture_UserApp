@@ -22,7 +22,7 @@ class UserRepository {
             ? await FirebaseFirestore.instance
                 .collection("users")
                 .orderBy('createdAt', descending: true)
-                .limit(8) //get initial limited users from firestore
+                .limit(15) //get initial limited users from firestore
                 .get()
             : await FirebaseFirestore.instance
                 .collection("users")
@@ -37,7 +37,7 @@ class UserRepository {
                 .collection('users')
                 .where('age', isLessThan: 60)
                 .orderBy('age', descending: false)
-                .limit(8)
+                .limit(15)
                 .get()
             : await firestore
                 .collection('users')
@@ -53,7 +53,7 @@ class UserRepository {
                 .collection('users')
                 .where('age', isGreaterThanOrEqualTo: 60)
                 .orderBy('age', descending: false)
-                .limit(8)
+                .limit(15)
                 .get()
             : await firestore
                 .collection('users')

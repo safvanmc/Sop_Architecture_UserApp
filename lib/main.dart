@@ -1,6 +1,7 @@
 import 'package:architecture/features/auth/presentation/provider/auth_provider.dart';
 import 'package:architecture/features/auth/presentation/view/widgets/login_screen.dart';
 import 'package:architecture/features/home/presentation/provider/provider.dart';
+import 'package:architecture/features/home/presentation/view/home.dart';
 import 'package:architecture/features/search/presentation/provider/search_provider.dart';
 import 'package:architecture/features/upload/prasentation/provider/uploadProvider.dart';
 import 'package:firebase_core/firebase_core.dart';

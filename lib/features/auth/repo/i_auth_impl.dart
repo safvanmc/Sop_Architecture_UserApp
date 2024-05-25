@@ -20,7 +20,7 @@ class AuthRepository {
         },
         verificationFailed: (FirebaseAuthException e) {
           log(e.toString());
-          throw Exception(e.message);
+          throw Exception("000000${e.message}");
         },
         codeSent: (String verificationId, int? resendToken) {
           Navigator.push(

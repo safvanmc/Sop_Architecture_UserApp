@@ -27,6 +27,9 @@ class Lazylist extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(
+                      height: 10.r,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
@@ -77,6 +80,7 @@ class Lazylist extends StatelessWidget {
                   controller: pro.scrollController,
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   itemCount: pro.usersList.length,
+                  physics: ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final data = pro.usersList[index];
 
@@ -89,7 +93,7 @@ class Lazylist extends StatelessWidget {
                         if (index == pro.usersList.length - 1 &&
                             !pro.isMoreDataLoading)
                           const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
+                            padding: EdgeInsets.symmetric(vertical: 20),
                             child: Center(
                               child: CircularProgressIndicator(
                                 strokeWidth: 3,
